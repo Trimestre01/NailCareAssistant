@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nail. Art - María Salamanca</title>
+<style>
+  :root{
+    --magenta:#d6249f;
+    --purple:#7b2ff7;
+    --pink-bg:#fbe9f7;
+    --text-dark:#2b1b3d;
+    --gray:#6b6b7a;
+    --white:#ffffff;
+    --radius:16px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:'Segoe UI', Arial, sans-serif;
+    background:linear-gradient(135deg,#fbd6f0,#e9d3fb 60%,#cdb6f7);
+    min-height:100vh;
+    color:var(--text-dark);
+  }
+  header{
+    text-align:center;
+    padding:40px 20px 10px;
+  }
+  header h1{
+    font-family:'Georgia', 'Times New Roman', serif;
+    font-size:42px;
+    color:#3a0d5c;
+    letter-spacing:1px;
+  }
+  header h1 .star{color:var(--magenta);}
+
+  nav.navbar{
+    max-width:1100px;
+    margin:0 auto 30px;
+    background:var(--white);
+    border-radius:14px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:14px 24px;
+    box-shadow:0 10px 30px rgba(123,47,247,0.15);
+  }
+  .brand{display:flex;align-items:center;gap:10px;}
+  .brand .logo-circle{
+    width:38px;height:38px;border-radius:50%;
+    background:linear-gradient(135deg,var(--magenta),var(--purple));
+    display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;
+  }
+  .brand .brand-text b{display:block;font-size:15px;color:var(--text-dark);}
+  .brand .brand-text span{font-size:12px;color:var(--gray);}
+  .nav-links{display:flex;gap:24px;font-size:14px;}
+  .nav-links a{color:var(--gray);text-decoration:none;}
+  .nav-links a.active{color:var(--magenta);font-weight:600;}
+  .nav-right{display:flex;align-items:center;gap:16px;font-size:14px;color:var(--text-dark);}
+  .btn-pill{
+    padding:9px 18px;border-radius:20px;border:none;cursor:pointer;
+    font-size:14px;font-weight:600;
+  }
+  .btn-gradient{
+    background:linear-gradient(90deg,var(--magenta),var(--purple));
+    color:#fff;
+  }
+  .btn-outline{
+    background:transparent;border:1.5px solid var(--text-dark);color:var(--text-dark);
+  }
+
+  .hero{
+    max-width:1100px;
+    margin:0 auto 50px;
+    display:grid;
+    grid-template-columns:1.1fr 1fr;
+    align-items:center;
+    gap:30px;
+    padding:40px;
+    border-radius:24px;
+    background:linear-gradient(120deg,#c95fd1,#7b2ff7);
+    color:#fff;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero .tag{
+    display:inline-block;background:rgba(255,255,255,0.18);
+    padding:6px 14px;border-radius:20px;font-size:12px;margin-bottom:16px;
+  }
+  .hero h2{font-size:46px;margin-bottom:6px;}
+  .hero h2 em{font-style:italic;font-weight:300;display:block;font-size:20px;}
+  .hero p{margin:18px 0;line-height:1.5;font-size:15px;max-width:420px;opacity:0.95;}
+  .hero .stats{display:flex;gap:20px;font-size:13px;margin-bottom:24px;}
+  .hero .stats span{display:flex;align-items:center;gap:6px;}
+  .hero .actions{display:flex;gap:14px;}
+  .hero-img{
+    border-radius:16px;overflow:hidden;
+    box-shadow:0 20px 50px rgba(0,0,0,0.3);
+    aspect-ratio:4/3;
+    background:#cfa6e0 center/cover;
+  }
+
+  main.booking{
+    max-width:1100px;margin:0 auto 60px;
+    display:grid;grid-template-columns:1fr 1fr;gap:24px;
+    padding:0 20px;
+  }
+  @media(max-width:880px){
+    main.booking{grid-template-columns:1fr;}
+    .hero{grid-template-columns:1fr;}
+  }
+  .card{
+    background:var(--white);
+    border-radius:var(--radius);
+    padding:24px;
+    box-shadow:0 15px 40px rgba(123,47,247,0.12);
+  }
+  .card h3{font-size:22px;color:var(--magenta);margin-bottom:4px;text-align:center;}
+  .card>.sub{text-align:center;color:var(--gray);font-size:13px;margin-bottom:18px;}
+
+  .guest-row{
+    display:flex;align-items:center;justify-content:space-between;
+    background:#fbeefb;border-radius:12px;padding:12px 16px;margin-bottom:20px;
+  }
+  .guest-row .left{display:flex;align-items:center;gap:10px;}
+  .guest-row .avatar{
+    width:34px;height:34px;border-radius:50%;
+    background:linear-gradient(135deg,var(--magenta),var(--purple));
+    color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;
+  }
+  .guest-row .name{font-weight:600;font-size:14px;}
+  .guest-row .meta{font-size:12px;color:var(--gray);}
+
+  .steps{
+    display:flex;justify-content:space-between;align-items:center;
+    margin-bottom:24px;position:relative;
+  }
+  .step{
+    display:flex;flex-direction:column;align-items:center;gap:6px;font-size:12px;color:var(--gray);
+    flex:1;position:relative;z-index:2;
+  }
+  .step .circ{
+    width:34px;height:34px;border-radius:50%;background:#f0f0f0;
+    display:flex;align-items:center;justify-content:center;color:#aaa;
+  }
+  .step.active .circ, .step.done .circ{
+    background:linear-gradient(135deg,var(--magenta),var(--purple));color:#fff;
+  }
+  .step.active span, .step.done span{color:var(--magenta);font-weight:600;}
+  .steps::before{
+    content:'';position:absolute;top:17px;left:8%;right:8%;height:2px;background:#eee;z-index:1;
+  }
+
+  .section-title{font-weight:700;font-size:16px;margin-bottom:2px;}
+  .section-sub{font-size:12px;color:var(--gray);margin-bottom:14px;}
+  .group-label{
+    font-size:12px;font-weight:700;color:var(--magenta);
+    text-transform:uppercase;letter-spacing:0.5px;margin:14px 0 8px;
+  }
+  .service-item{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:10px 12px;border-radius:10px;border:1px solid #f0e6f5;margin-bottom:6px;
+    cursor:pointer;transition:background 0.15s;
+  }
+  .service-item:hover{background:#fbeefb;}
+  .service-item .left{display:flex;align-items:center;gap:10px;font-size:14px;}
+  .service-item input{accent-color:var(--magenta);width:16px;height:16px;}
+  .service-item .right{display:flex;gap:14px;font-size:13px;color:var(--gray);}
+  .service-item .price{color:var(--magenta);font-weight:700;}
+
+  /* calendar */
+  .cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+  .cal-head button{
+    background:none;border:none;font-size:16px;cursor:pointer;color:var(--magenta);
+  }
+  .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center;}
+  .cal-grid .dow{font-size:11px;color:var(--gray);font-weight:600;padding:4px 0;}
+  .cal-grid .day{
+    font-size:13px;padding:10px 0;border-radius:8px;cursor:pointer;position:relative;color:var(--text-dark);
+  }
+  .cal-grid .day.disabled{color:#ccc;cursor:default;}
+  .cal-grid .day.has-dot::after{
+    content:'';position:absolute;bottom:4px;left:50%;transform:translateX(-50%);
+    width:5px;height:5px;border-radius:50%;background:var(--magenta);
+  }
+  .cal-grid .day.selected{background:linear-gradient(135deg,var(--magenta),var(--purple));color:#fff;}
+  .cal-legend{display:flex;gap:16px;font-size:11px;color:var(--gray);margin-top:10px;}
+  .cal-legend .dot{width:6px;height:6px;border-radius:50%;display:inline-block;margin-right:4px;}
+  .dot-pink{background:var(--magenta);}
+  .dot-gray{background:#ccc;}
+
+  .card-footer{display:flex;justify-content:space-between;align-items:center;margin-top:20px;}
+  .link-back{color:var(--gray);font-size:14px;text-decoration:none;cursor:pointer;}
+  .btn-continue{
+    background:linear-gradient(90deg,var(--magenta),var(--purple));
+    color:#fff;border:none;padding:12px 26px;border-radius:24px;font-size:14px;font-weight:600;cursor:pointer;
+  }
+
+  .explain{
+    max-width:1100px;margin:0 auto 60px;padding:0 20px;
+    display:flex;gap:20px;align-items:flex-start;
+  }
+  .explain .icon{
+    min-width:56px;height:56px;border-radius:50%;
+    background:linear-gradient(135deg,var(--magenta),var(--purple));
+    display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;
+  }
+  .explain h4{color:#3a0d5c;margin-bottom:6px;}
+  .explain p{color:#4a3a5a;line-height:1.6;font-size:14px;max-width:700px;}
+
+  /* modal login */
+  .overlay{
+    position:fixed;inset:0;background:rgba(40,10,60,0.45);
+    display:none;align-items:center;justify-content:center;z-index:50;
+  }
+  .overlay.show{display:flex;}
+  .modal{
+    background:#fff;border-radius:18px;padding:30px;width:360px;
+    box-shadow:0 30px 60px rgba(0,0,0,0.3);position:relative;
+  }
+  .modal .close{position:absolute;top:16px;right:16px;background:none;border:none;font-size:18px;cursor:pointer;color:var(--gray);}
+  .modal .modal-logo{
+    width:60px;height:60px;border-radius:50%;margin:0 auto 12px;
+    background:linear-gradient(135deg,var(--magenta),var(--purple));
+    display:flex;align-items:center;justify-content:center;color:#fff;font-size:26px;
+  }
+  .modal h3{text-align:center;color:var(--magenta);font-size:22px;}
+  .modal .modal-sub{text-align:center;color:var(--gray);font-size:13px;font-style:italic;margin-bottom:18px;}
+  .tabs{display:flex;background:#f5f0fa;border-radius:10px;padding:4px;margin-bottom:18px;}
+  .tabs button{
+    flex:1;border:none;background:none;padding:10px;border-radius:8px;font-size:13px;cursor:pointer;color:var(--gray);
+  }
+  .tabs button.active{background:#fff;color:var(--text-dark);font-weight:600;box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+  .input-group{
+    display:flex;align-items:center;gap:10px;border:1px solid #e6dff0;border-radius:10px;
+    padding:12px 14px;margin-bottom:12px;font-size:14px;
+  }
+  .input-group input{border:none;outline:none;flex:1;font-size:14px;}
+  .modal .btn-ingresar{
+    width:100%;padding:13px;border:none;border-radius:24px;
+    background:linear-gradient(90deg,var(--magenta),var(--purple));color:#fff;
+    font-size:15px;font-weight:600;cursor:pointer;margin-top:6px;
+  }
+  .modal .foot-text{text-align:center;font-size:13px;color:var(--gray);margin-top:14px;}
+  .modal .foot-text a{color:var(--magenta);font-weight:600;text-decoration:none;}
+</style>
+</head>
+<body>
+
+<header>
+  <h1><span class="star">✦</span> Prototipo-Nail. Art <span class="star">✦</span></h1>
+</header>
+
+<nav class="navbar">
+  <div class="brand">
+    <div class="logo-circle">✦</div>
+    <div class="brand-text"><b>Nail. Art</b><span>María Salamanca</span></div>
+  </div>
+  <div class="nav-links">
+    <a href="#" class="active">Inicio</a>
+    <a href="#">Galería</a>
+    <a href="#">Contacto</a>
+  </div>
+  <div class="nav-right">
+    <span>📞 (555) 123-4567</span>
+    <button class="btn-pill btn-gradient" onclick="openModal()">Iniciar Sesión</button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div>
+    <span class="tag">✦ Salón de Belleza Premium</span>
+    <h2>Nail. Art</h2>
+    <em>María Salamanca</em>
+    <p>Especialistas en manicura, pedicura, depilación y cuidado de uñas. Más de 10 años embelleciendo tus manos y pies con los mejores tratamientos y productos profesionales.</p>
+    <div class="stats">
+      <span>⭐ +5000 clientas satisfechas</span>
+      <span>✦ Productos de alta calidad</span>
+    </div>
+    <div class="actions">
+      <button class="btn-pill btn-gradient" onclick="openModal('register')">✦ Registrarse</button>
+      <button class="btn-pill btn-outline" style="color:#fff;border-color:#fff" onclick="openModal('login')">→ Iniciar Sesión</button>
+    </div>
+  </div>
+  <div class="hero-img" style="background-image:url('https://images.unsplash.com/photo-1610992015732-2449b76344bc?w=600');"></div>
+</section>
+
+<main class="booking">
+
+  <div class="card" id="serviceCard">
+    <h3>Agenda tu Cita</h3>
+    <p class="sub">Elige tus servicios, fecha y hora favorita</p>
+
+    <div class="guest-row">
+      <div class="left">
+        <div class="avatar">?</div>
+        <div>
+          <div class="name">Invitada</div>
+          <div class="meta">0 citas</div>
+        </div>
+      </div>
+      <span style="color:var(--magenta)">✦</span>
+    </div>
+
+    <div class="steps">
+      <div class="step active"><div class="circ">✂</div><span>Servicio</span></div>
+      <div class="step"><div class="circ">📅</div><span>Fecha</span></div>
+      <div class="step"><div class="circ">🕒</div><span>Hora</span></div>
+      <div class="step"><div class="circ">✓</div><span>Confirmar</span></div>
+    </div>
+
+    <div class="section-title">¿Qué te vamos a hacer hoy?</div>
+    <div class="section-sub">Puedes elegir uno o varios servicios</div>
+
+    <div class="group-label">Manos</div>
+    <label class="service-item">
+      <div class="left"><input type="checkbox"> Manicura Clásica</div>
+      <div class="right"><span>45 min</span><span class="price">$25</span></div>
+    </label>
+    <label class="service-item">
+      <div class="left"><input type="checkbox"> Manicura Semipermanente</div>
+      <div class="right"><span>60 min</span><span class="price">$35</span></div>
+    </label>
+    <label class="service-item">
+      <div class="left"><input type="checkbox"> Uñas Acrílicas</div>
+      <div class="right"><span>90 min</span><span class="price">$55</span></div>
+    </label>
+
+    <div class="group-label">Pies</div>
+    <label class="service-item">
+      <div class="left"><input type="checkbox"> Pedicura Clásica</div>
+      <div class="right"><span>50 min</span><span class="price">$35</span></div>
+    </label>
+    <label class="service-item">
+      <div class="left"><input type="checkbox"> Pedicura Spa</div>
+      <div class="right"><span>75 min</span><span class="price">$50</span></div>
+    </label>
+
+    <div class="group-label">Diseño</div>
+    <label class="service-item">
+      <div class="left"><input type="checkbox"> Nail Art / Diseño</div>
+      <div class="right"><span>30 min</span><span class="price">$20</span></div>
+    </label>
+  </div>
+
+  <div class="card">
+    <div class="guest-row">
+      <div class="left">
+        <div class="avatar">?</div>
+        <div>
+          <div class="name">Invitada</div>
+          <div class="meta">0 citas</div>
+        </div>
+      </div>
+      <span style="color:var(--magenta)">✦</span>
+    </div>
+
+    <div class="steps">
+      <div class="step done"><div class="circ">✓</div><span>Servicio</span></div>
+      <div class="step active"><div class="circ">📅</div><span>Fecha</span></div>
+      <div class="step"><div class="circ">🕒</div><span>Hora</span></div>
+      <div class="step"><div class="circ">✓</div><span>Confirmar</span></div>
+    </div>
+
+    <div class="section-title">Elige tu fecha</div>
+    <div class="section-sub">Selecciona el día que mejor te quede</div>
+
+    <div class="cal-head">
+      <button>‹</button>
+      <strong>Junio 2026</strong>
+      <button>›</button>
+    </div>
+
+    <div class="cal-grid" id="calGrid"></div>
+
+    <div class="cal-legend">
+      <span><span class="dot dot-pink"></span>Tiene citas ese día</span>
+      <span><span class="dot dot-gray"></span>No disponible</span>
+    </div>
+
+    <div class="card-footer">
+      <a class="link-back">‹ Volver</a>
+      <button class="btn-continue">Continuar ›</button>
+    </div>
+  </div>
+
+</main>
+
+<section class="explain">
+  <div class="icon">📅</div>
+  <div>
+    <h4>Apartado: Agenda tu Cita</h4>
+    <p>En esta sección el usuario puede agendar su cita de forma fácil y rápida. Primero selecciona los servicios que desea, luego elige la fecha disponible que mejor se adapte a su tiempo. Próximamente podrá elegir la hora y confirmar su cita.</p>
+  </div>
+</section>
+
+<!-- LOGIN / REGISTER MODAL -->
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <button class="close" onclick="closeModal()">✕</button>
+    <div class="modal-logo">✦</div>
+    <h3>Nail. Art</h3>
+    <div class="modal-sub">María Salamanca</div>
+
+    <div class="tabs">
+      <button class="active" id="tabLogin" onclick="switchTab('login')">Iniciar Sesión</button>
+      <button id="tabRegister" onclick="switchTab('register')">Registrarse</button>
+    </div>
+
+    <div id="loginForm">
+      <div class="input-group">✉️ <input type="email" placeholder="Correo electrónico"></div>
+      <div class="input-group">🔒 <input type="password" placeholder="Contraseña"> 👁</div>
+      <button class="btn-ingresar">Ingresar</button>
+      <div class="foot-text">¿No tienes cuenta? <a href="#" onclick="switchTab('register')">Regístrate aquí</a></div>
+    </div>
+
+    <div id="registerForm" style="display:none;">
+      <div class="input-group">👤 <input type="text" placeholder="Nombre completo"></div>
+      <div class="input-group">✉️ <input type="email" placeholder="Correo electrónico"></div>
+      <div class="input-group">🔒 <input type="password" placeholder="Contraseña"></div>
+      <button class="btn-ingresar">Crear cuenta</button>
+      <div class="foot-text">¿Ya tienes cuenta? <a href="#" onclick="switchTab('login')">Inicia sesión</a></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Calendario Junio 2026
+  const calGrid = document.getElementById('calGrid');
+  const dows = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+  dows.forEach(d=>{
+    const el = document.createElement('div');
+    el.className='dow'; el.textContent=d;
+    calGrid.appendChild(el);
+  });
+  // Junio 2026 empieza en Lunes (1 jun 2026 es lunes)
+  const firstDayOffset = 1; // lunes -> índice 1 en Dom,Lun,...
+  const daysInMonth = 30;
+  const daysWithAppointments = [10,11,12,13,15,16,17];
+  const disabledDays = [1,2,3,4,5,6,7,8,9,14];
+
+  for(let i=0;i<firstDayOffset;i++){
+    const empty = document.createElement('div');
+    calGrid.appendChild(empty);
+  }
+  for(let d=1; d<=daysInMonth; d++){
+    const cell = document.createElement('div');
+    cell.className='day';
+    cell.textContent=d;
+    if(disabledDays.includes(d)) cell.classList.add('disabled');
+    if(daysWithAppointments.includes(d)) cell.classList.add('has-dot');
+    if(!cell.classList.contains('disabled')){
+      cell.addEventListener('click', ()=>{
+        document.querySelectorAll('.cal-grid .day').forEach(c=>c.classList.remove('selected'));
+        cell.classList.add('selected');
+      });
+    }
+    calGrid.appendChild(cell);
+  }
+
+  // Modal
+  const overlay = document.getElementById('overlay');
+  function openModal(tab='login'){
+    overlay.classList.add('show');
+    switchTab(tab);
+  }
+  function closeModal(){ overlay.classList.remove('show'); }
+  overlay.addEventListener('click', e=>{ if(e.target===overlay) closeModal(); });
+
+  function switchTab(tab){
+    const isLogin = tab==='login';
+    document.getElementById('tabLogin').classList.toggle('active', isLogin);
+    document.getElementById('tabRegister').classList.toggle('active', !isLogin);
+    document.getElementById('loginForm').style.display = isLogin ? 'block':'none';
+    document.getElementById('registerForm').style.display = isLogin ? 'none':'block';
+  }
+</script>
+
+</body>
+</html>
